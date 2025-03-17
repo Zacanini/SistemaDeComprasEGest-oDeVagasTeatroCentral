@@ -1,18 +1,17 @@
 package org.example;
 
 
-import org.example.infos.Endereco;
-import org.example.infos.Data;
-import org.example.infos.Pagamento;
-import org.example.pessoas.Atracao;
-import org.example.pessoas.Cliente;
-import org.jetbrains.annotations.NotNull;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import org.example.infos.Endereco;
+import org.example.infos.Pagamento;
+import org.example.pessoas.Atracao;
+import org.example.pessoas.Cliente;
+import org.jetbrains.annotations.NotNull;
 
 public class Main {
     public static Scanner leGlobal = new Scanner(System.in);
@@ -41,8 +40,8 @@ public class Main {
         teatroCentral.addClientes(cliente);
         teatroCentral.addClientes(cliente2);
         teatroCentral.addClientes(cliente3);
-        Data data = new Data(5, 5, 2024);
-        Data data2 = new Data(3, 10, 2024);
+        LocalDate data = LocalDate.of(2024, 5, 5);
+        LocalDate data2 = LocalDate.of(2024, 10, 3);
         Atracao atracao1 = new Atracao("o robson", 200, "Um show animado de comedia");
         Atracao atracao2 = new Atracao("a toca", 100, "Um show  de pensamentos");
         Atracao atracao3 = new Atracao("as pingas", 80, "Um show de reflexão");
@@ -158,7 +157,7 @@ public class Main {
 
     }
     @NotNull
-    public static Evento CadastrandoEvento(Scanner sc) {
+    public static Evento CadastrandoEvento(Scanner sc) { //NG
         Scanner sc2 = new Scanner(System.in);
         System.out.println("Qual nome do evento que você quer adicionar?");
         String nomeEvent = sc.nextLine();
@@ -176,7 +175,7 @@ public class Main {
         int total = sc.nextInt();
         System.out.println("Qual a descrição do evento? ?");
         String descr = sc2.nextLine();
-        Data dataEvent = new Data(diaEvent, mesEvent, anoEvent);
+        LocalDate dataEvent = LocalDate.of(anoEvent, mesEvent, diaEvent);
         Evento evento = new Evento(nomeEvent, dataEvent, horarioEvent, valorIngreco, total, descr);
         return evento;
     }
@@ -192,8 +191,7 @@ public class Main {
                 for (Atracao a : e.getAtracoes()) {
                     System.out.println("---- " + a.getNome());
                 }
-                System.out.println("Data do evento: " + e.getData().getDia() + "/" + e.getData().getMes() + "/"
-                        + e.getData().getAno());
+                System.out.println("Data do evento: " + e.getData());
                 System.out.println("Descrição do evento: " + e.getDescricao());
                 System.out.println("Horario do evento: " + e.getHorario());
                 System.out.println("Numero de assentos disponivei: " + e.getAssentosRestantes());
@@ -288,7 +286,7 @@ public class Main {
                 int dia = sc.nextInt();
                 int mes = sc.nextInt();
                 int ano = sc.nextInt();
-                Data novaData = new Data(dia, mes, ano);
+                LocalDate novaData = LocalDate.of(ano, mes, dia);
                 teatro.alterarData(novaData, nome);
                 System.out.println("Data alterada com sucesso!!");
             } catch (RuntimeException e) {
@@ -610,8 +608,7 @@ public class Main {
             System.out.println("Evento: " + i.getEvento().getNome());
             System.out.println("Preço do ingresso: " + i.getPreco());
             System.out.println(i.getPagamento().getDescricao());
-            System.out.println("Data da compra: " + i.getPagamento().getData().getDia() + "/" +
-                    i.getPagamento().getData().getMes() + "/" + i.getPagamento().getData().getAno());
+            System.out.println("Data da compra: " + i.getPagamento().getData());
             System.out.println("Numero da Poltrona: " + i.getNumDoAssento());
             System.out.println("################################## ");
         }
@@ -640,8 +637,7 @@ public class Main {
             for (Atracao a : e.getAtracoes()) {
                 System.out.println("---- " + a.getNome());
             }
-            System.out.println("Data do evento: " + e.getData().getDia() + "/" + e.getData().getMes() + "/"
-                    + e.getData().getAno());
+            System.out.println("Data do evento: " + e.getData());
             System.out.println("Descrição do evento: " + e.getDescricao());
             System.out.println("Horario do evento: " + e.getHorario());
             System.out.println("Numero de assentos disponivei: " + e.getAssentosRestantes());
@@ -724,8 +720,7 @@ public class Main {
         return rspt;
     }
     public static void InformacoesSobreIngresso(Ingresso ingresso) {
-        System.out.println("---Data: " + ingresso.getDataDoEvento().getDia() +
-                "/" + ingresso.getDataDoEvento().getMes() + "/" + ingresso.getDataDoEvento().getAno());
+        System.out.println("---Data: " + ingresso.getDataDoEvento());
         System.out.println("---Valor: " + ingresso.getPreco());
         System.out.println("---Horario: " + ingresso.getHorario());
         System.out.println("---Poltrona: " + ingresso.getNumDoAssento());
@@ -831,7 +826,7 @@ public class Main {
         int dia = hoje.getDayOfMonth();
         int mes = hoje.getMonthValue();
         int ano = hoje.getYear();
-        Data data = new Data(dia, mes, ano);
+        LocalDate data = LocalDate.of(ano, mes, dia);
         Pagamento pg = new Pagamento(data, ingresso.definePreco(cliente));
         pg.setDescricao("Horario de compra: " + horaFormatada + "\n");
         pg.setValor(ingresso.getPreco());
@@ -843,8 +838,7 @@ public class Main {
         ingresso.setPagamento(pg);
         System.out.println("Pagamento realizado com sucesso! ");
         System.out.println("#########-----##############");
-        System.out.println("Data do pagamento: " + pg.getData().getDia() + "/" + pg.getData().getMes() + "/"
-                + pg.getData().getAno());
+        System.out.println("Data do pagamento: " + pg.getData());
         System.out.println("Informações do pagamento: \n" + pg.getDescricao());
         System.out.println("Valor do pagamento: R$" +pg.getValor());
 
