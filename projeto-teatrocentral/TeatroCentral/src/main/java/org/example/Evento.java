@@ -1,15 +1,15 @@
 package org.example;
 
-import org.example.infos.Data;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import org.example.infos.Pagamento;
 import org.example.pessoas.Atracao;
-
-import java.util.ArrayList;
 
 public class Evento {
     private String nome;
     private String descricao;
-    private Data data;
+    private LocalDate data; //NG
     private String horario;
     private double preco;
     private ArrayList<Atracao> atracoes;
@@ -24,7 +24,7 @@ public class Evento {
         atracoes = new ArrayList<>();
     }
 
-    public Evento(String nome, Data data, String horario ,double preco,int capacidadeTotalDePublico,String descricao) {
+    public Evento(String nome, LocalDate data, String horario ,double preco,int capacidadeTotalDePublico,String descricao) {
         this.preco = preco;
         this.nome = nome;
         this.data = data;
@@ -61,10 +61,10 @@ public class Evento {
 
 
 
-    public Data getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(Data data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

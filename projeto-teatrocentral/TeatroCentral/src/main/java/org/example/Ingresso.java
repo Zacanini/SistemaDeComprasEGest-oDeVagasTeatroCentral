@@ -1,19 +1,19 @@
 package org.example;
 
-import org.example.infos.Data;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Random;
+
 import org.example.infos.Pagamento;
 import org.example.pessoas.Atracao;
 import org.example.pessoas.Cliente;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Ingresso {
     private Cliente dono;
     private Evento evento;
     private ArrayList<Atracao> atracoes;
-    private Data dataDoEvento;
-    private String horario;
+    private LocalDate dataDoEvento;
+    private String horario; //NG string???
     private double preco;
     private String codDeBarras;
     private int numDoAssento;
@@ -22,7 +22,7 @@ public class Ingresso {
     public Ingresso() {
     }
 
-    public Ingresso(Cliente dono, Evento evento, ArrayList<Atracao> atracoes, Data dataDoEvento, String horario, double preco, int numDoAssento) {
+    public Ingresso(Cliente dono, Evento evento, ArrayList<Atracao> atracoes, LocalDate dataDoEvento, String horario, double preco, int numDoAssento) {
         this.dono = dono;
         this.evento = evento;
         this.atracoes = new ArrayList<>(atracoes);
@@ -75,10 +75,10 @@ public class Ingresso {
         this.evento = evento;
     }
 
-    public Data getDataDoEvento() {
+    public LocalDate getDataDoEvento() {
         return dataDoEvento;
     }
-    public void setDataDoEvento(Data dataDoEvento) {
+    public void setDataDoEvento(LocalDate dataDoEvento) {
         this.dataDoEvento = dataDoEvento;
     }
 
@@ -113,6 +113,7 @@ public class Ingresso {
         for (int i = 0; i < 8; i++) {
             int digito = random.nextInt(10); // Gera um dígito aleatório entre 0 e 9
             codDeBarras += digito;
+            //NG directamente +=
         }
 
     }

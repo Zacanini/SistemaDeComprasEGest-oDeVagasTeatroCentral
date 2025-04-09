@@ -1,11 +1,11 @@
 package org.example;
 
-import org.example.infos.Data;
 import org.example.infos.Endereco;
 import org.example.infos.Pagamento;
 import org.example.pessoas.Atracao;
 import org.example.pessoas.Cliente;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -66,9 +66,7 @@ public class Teatro {
     }
     public void addEventos(Evento evento) {
         for (Evento e : eventos){
-            if ((e.getData().getDia()==evento.getData().getDia())
-                    && (e.getData().getMes() == evento.getData().getMes())
-                    && (e.getData().getAno() == evento.getData().getAno())){
+            if ((e.getData()==evento.getData())){
                 throw new RuntimeException("Um evento ja está marcado para essa data!! ");
             }
         }
@@ -78,7 +76,7 @@ public class Teatro {
         ArrayList<Evento> eventosMes = new ArrayList<>();
         {
             for (Evento e : eventos) {
-                if (e.getData().getMes() == mesEvent) {
+                if (e.getData().getMonthValue() == mesEvent) {
                     eventosMes.add(e);
                 }
             }
@@ -92,7 +90,7 @@ public class Teatro {
         ArrayList<Evento> eventosAno = new ArrayList<>();
         {
             for (Evento e : eventos) {
-                if (e.getData().getAno() == ano) {
+                if (e.getData().getYear() == ano) {
                     eventosAno.add(e);
                 }
             }
@@ -248,12 +246,10 @@ public class Teatro {
             }
         }
     }
-    public void alterarData (Data data,String nome){
+    public void alterarData (LocalDate data, String nome){
         for (Evento e : eventos){
             if (e.getNome().equals(nome)){
-                e.getData().setDia(data.getDia());
-                e.getData().setMes(data.getMes());
-                e.getData().setAno(data.getAno());
+                e.setData(data);
             }
         }
     }

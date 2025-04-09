@@ -1,23 +1,25 @@
 package org.example.infos;
 
+import java.time.LocalDate;
+
 public class Pagamento {
-    private Data data;
+    private LocalDate data;
     private double valor;
     private String descricao;
 
     public Pagamento() {
     }
 
-    public Pagamento(Data data, double valor) {
+    public Pagamento(LocalDate data, double valor) {
         this.data = data;
         this.valor = valor;
     }
 
-    public Data getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
